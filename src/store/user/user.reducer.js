@@ -13,7 +13,24 @@ export const userReducer = (state = INITIAL_STATE, action) => {
 		case USER_ACTION_TYPES.SIGN_IN_SUCCESS:
 			return { ...state, currentUser: payload };
 
+		case USER_ACTION_TYPES.SIGN_OUT_SUCCESS:
+			return { ...state, currentUser: null };
+
+		case USER_ACTION_TYPES.SIGN_OUT_FAILED:
 		case USER_ACTION_TYPES.SIGN_IN_FAILED:
+		case USER_ACTION_TYPES.SIGN_UP_FAILED:
+			if (payload.code === 'auth/user-not-found') {
+				alert('no user associated with this email');
+			}
+
+			if (payload.code === 'auth/wrong-password') {
+				alert('incorrect password for email');
+			}
+
+			if (payload.code === 'auth/email-already-in-use') {
+				alert('Cannot create user, email already in use');
+			}
+
 			return { ...state, error: payload };
 
 		default:

@@ -95,13 +95,13 @@ export const createUserDocumentFromAuth = async (
 	return userSnapshot;
 };
 
-export const createAuthUserDocumentFromAuth = async (email, password) => {
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return;
 
 	return await createUserWithEmailAndPassword(auth, email, password);
 };
 
-export const signInAuthUserDocumentFromAuth = async (email, password) => {
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 	if (!email || !password) return;
 
 	return await signInWithEmailAndPassword(auth, email, password);
