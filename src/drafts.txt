@@ -76,3 +76,29 @@
 	// }, {});
 
 	// return categoryMap;
+
+//  const middleWares = [process.env.NODE_ENV !== 'production' && logger, thunk].filter(
+//	Boolean
+// );
+
+export const fetchCategoriesAsync = () => async (dispatch) => {
+	dispatch(fetchCategoriesStart());
+
+	try {
+		const categoriesArray = await getCategoriesAndDocuments('categories');
+		dispatch(fetchCategoriesSuccess(categoriesArray));
+	} catch (error) {
+		dispatch(fetchCategoriesFailed(error));
+	}
+};
+
+
+
+const unsubscribe = onAuthStateChangedListener((user) => {
+			if (user) {
+				createUserDocumentFromAuth(user);
+			}
+			dispatch(setCurrentUser(user));
+		});
+
+		return unsubscribe;
