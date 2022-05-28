@@ -26,7 +26,7 @@ const PaymentForm = () => {
 			return;
 		}
 		setIsProcessingPayment(true);
-		const response = await fetch('/.netlify/serverless-functions/:splat', {
+		const response = await fetch('/.netlify/functions/create-payment-intent', {
 			method: 'post',
 			headers: {
 				'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const PaymentForm = () => {
 			payment_method: {
 				card: elements.getElement(CardElement),
 				billing_details: {
-					name: currentUser ? currentUser.displayName : 'Bekzod Tukhtasinov',
+					name: currentUser ? currentUser.displayName : 'Guest',
 				},
 			},
 		});
